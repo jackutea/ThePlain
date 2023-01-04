@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameArki.TripodCamera;
+using GameArki.FreeInput;
 
-namespace ThePlain
-{
-    public class ClientApp : MonoBehaviour
-    {
-        // Start is called before the first frame update
-        void Start()
-        {
+namespace ThePlain {
 
+    public class ClientApp : MonoBehaviour {
+
+        void Awake() {
+
+            InfraContext infraContext = new InfraContext();
+            
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
+
 }

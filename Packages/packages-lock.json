@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "13492d6dcc719e6b8d134be933c07958ed0d32c4"
     },
+    "com.gamearki.freeinput": {
+      "version": "ssh://git@github.com/gamearki/FreeInput.git?path=Assets/com.gamearki.freeinput#main",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "ec0de329be155a68b1ae507d88661b3e2635a4f1"
+    },
     "com.gamearki.menutool": {
       "version": "ssh://git@github.com/gamearki/arkimenutool.git?path=Assets/com.gamearki.menutool#main",
       "depth": 0,
@@ -27,6 +34,20 @@
       "source": "git",
       "dependencies": {},
       "hash": "8d6254cf6af14e094517b2ed6cdde090adaade76"
+    },
+    "com.unity.addressables": {
+      "version": "1.19.19",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.scriptablebuildpipeline": "1.19.6",
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+      },
+      "url": "https://packages.unity.cn"
     },
     "com.unity.editorcoroutines": {
       "version": "1.0.0",
@@ -83,6 +104,13 @@
     },
     "com.unity.performance.profile-analyzer": {
       "version": "1.1.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.cn"
+    },
+    "com.unity.scriptablebuildpipeline": {
+      "version": "1.19.6",
       "depth": 1,
       "source": "registry",
       "dependencies": {},

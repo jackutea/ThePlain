@@ -1,6 +1,11 @@
 {
   "dependencies": {
+    "com.gamearki.fpeasing": "ssh://git@github.com/gamearki/FPEasing.git?path=Assets/com.gamearki.fpeasing#main",
+    "com.gamearki.freeinput": "ssh://git@github.com/gamearki/FreeInput.git?path=Assets/com.gamearki.freeinput#main",
+    "com.gamearki.menutool": "ssh://git@github.com/gamearki/arkimenutool.git?path=Assets/com.gamearki.menutool#main",
     "com.gamearki.setup": "ssh://git@github.com/gamearki/GameArkiSetup.git?path=Assets/com.gamearki.setup#main",
+    "com.gamearki.tripodcamera": "ssh://git@github.com/gamearki/TripodCamera.git?path=Assets/com.gamearki.tripodcamera#main",
+    "com.unity.addressables": "1.19.19",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.vscode": "1.2.5",
     "com.unity.test-framework": "1.1.31",
@@ -36,9 +41,6 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "com.gamearki.menutool": "ssh://git@github.com/gamearki/arkimenutool.git?path=Assets/com.gamearki.menutool#main",
-    "com.gamearki.tripodcamera": "ssh://git@github.com/gamearki/TripodCamera.git?path=Assets/com.gamearki.tripodcamera#main",
-    "com.gamearki.fpeasing": "ssh://git@github.com/gamearki/FPEasing.git?path=Assets/com.gamearki.fpeasing#main"
+    "com.unity.modules.xr": "1.0.0"
   }
 }
