@@ -18,7 +18,12 @@ MonoBehaviour:
   m_GUID: 66e552e175de73642901f10a66a4fc42
   m_SerializeEntries:
   - m_GUID: 770787defac7f0e4480de35ec28ec695
-    m_Address: entity_role
+    m_Address: entity_role_logic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - World
+  - m_GUID: 663f609f47296104e894fa16a78aee48
+    m_Address: entity_role_renderer
     m_ReadOnly: 0
     m_SerializedLabels:
     - World

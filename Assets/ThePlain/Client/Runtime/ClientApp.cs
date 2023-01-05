@@ -46,11 +46,19 @@ namespace ThePlain.Main.Entry {
 
         }
 
+        void FixedUpdate() {
+            if (!isInit) {
+                return;
+            }
+            worldController.FixedTick();
+        }
+
         void Update() {
             if (!isInit) {
                 return;
             }
             mainController.Tick();
+            worldController.Tick(infraContext);
         }
 
     }
