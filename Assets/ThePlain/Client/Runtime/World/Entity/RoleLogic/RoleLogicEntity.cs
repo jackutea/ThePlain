@@ -11,8 +11,15 @@ namespace ThePlain.World.Entities {
         Rigidbody rb;
         public Rigidbody RB => rb;
 
+        RoleInputRecordComponent inputCom;
+        public RoleInputRecordComponent InputCom => inputCom;
+
         public void Ctor() {
+            
             rb = GetComponent<Rigidbody>();
+
+            inputCom = new RoleInputRecordComponent();
+
         }
 
     }
