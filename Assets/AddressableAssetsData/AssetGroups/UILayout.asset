@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UILayout
+  m_EditorClassIdentifier: 
+  m_GroupName: UILayout
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 731995c052f528944a26499e4ac9d3ae
+  m_SerializeEntries:
+  - m_GUID: 13cd0f1cd20ea41419d586e5b3eece5a
+    m_Address: ui_login
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UILayout
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 7fb97f3e13f17ea459505c5bec5fa231, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bf3af1c3415134340b4ecc871dcb1218, type: 2}
+    - {fileID: 11400000, guid: dc8cd05828b54b8459e9ffa11b1f3adb, type: 2}
