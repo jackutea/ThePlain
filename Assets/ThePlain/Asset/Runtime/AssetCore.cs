@@ -8,15 +8,20 @@ namespace ThePlain.Asset {
         AssetGetterAPI getterAPI;
         public IAssetGetterAPI Getter => getterAPI;
 
+        AssetSetterAPI setterAPI;
+        public IAssetSetterAPI Setter => setterAPI;
+
         AssetContext assetContext;
 
         public AssetCore() {
 
             assetContext = new AssetContext();
             getterAPI = new AssetGetterAPI();
+            setterAPI = new AssetSetterAPI();
 
             getterAPI.Inject(assetContext);
-            
+            setterAPI.Inject(assetContext);
+
         }
 
         public async Task Init() {

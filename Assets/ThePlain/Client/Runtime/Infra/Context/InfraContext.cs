@@ -3,7 +3,7 @@ using GameArki.TripodCamera;
 using UIRenderer;
 using ThePlain.Asset;
 
-namespace ThePlain {
+namespace ThePlain.Infra.Facades {
 
     public class InfraContext {
 
@@ -19,11 +19,15 @@ namespace ThePlain {
         AssetCore assetCore;
         public AssetCore AssetCore => assetCore;
 
+        InfraEventCenter eventCenter;
+        public InfraEventCenter EventCenter => eventCenter;
+
         public InfraContext() {
             inputCore = new FreeInputCore();
             tcCore = new TCCore();
             ui = new UICore();
             assetCore = new AssetCore();
+            eventCenter = new InfraEventCenter();
         }
 
     }

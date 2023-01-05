@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 using ThePlain.Main.Facades;
+using ThePlain.Infra.Facades;
 
 namespace ThePlain.Main.Controller {
 
@@ -14,11 +15,9 @@ namespace ThePlain.Main.Controller {
             var setter = ui.Setter;
             setter.LoginPage_Open();
             setter.LoginPage_Binding_StartGame(() => {
+                infraContext.EventCenter.InvokeStartGame();
                 setter.LoginPage_Close();
             });
-
-            infraContext.AssetCore.Getter.TryGetWorldAsset("entity_role", out var go);
-            var entity = Object.Instantiate(go);
 
         }
 

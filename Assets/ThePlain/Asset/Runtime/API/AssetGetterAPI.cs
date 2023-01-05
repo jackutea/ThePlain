@@ -17,6 +17,7 @@ namespace ThePlain.Asset {
             var worldAssets = assetContext.WorldAssets;
             return worldAssets.TryGet(name, out prefab);
         }
+
     }
 
 }

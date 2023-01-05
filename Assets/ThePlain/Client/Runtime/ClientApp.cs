@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
-using GameArki.TripodCamera;
-using GameArki.FreeInput;
 using ThePlain.Main.Controller;
 using ThePlain.Main.Facades;
 using ThePlain.Infra.Controller;
+using ThePlain.Infra.Facades;
+using ThePlain.World.Controller;
 
 namespace ThePlain.Main.Entry {
 
@@ -16,6 +16,8 @@ namespace ThePlain.Main.Entry {
         MainContext mainContext;
         MainController mainController;
 
+        WorldController worldController;
+
         bool isInit;
 
         void Awake() {
@@ -26,12 +28,15 @@ namespace ThePlain.Main.Entry {
             mainController = new MainController();
             mainContext = new MainContext();
 
+            worldController = new WorldController();
+
             Action action = async () => {
 
                 var canvas = GetComponentInChildren<Canvas>();
                 await infraController.Init(canvas, infraContext);
 
                 mainController.Init(mainContext, infraContext);
+                worldController.Init(infraContext);
 
                 isInit = true;
 
