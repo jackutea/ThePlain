@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using UnityEngine;
+using GameArki.FPEasing;
 using ThePlain.Infra.Facades;
 using ThePlain.World.Facades;
 
@@ -30,6 +31,9 @@ namespace ThePlain.World.Domain {
             var pos = Vector3.up * 5;
             var roleLogic = roleLogicDomain.Spawn(pos);
             var roleRenderer = roleRendererDomain.Spawn(roleLogic.ID, pos);
+
+            var cameraCore = infraContext.CameraCore;
+            cameraCore.SetterAPI.Follow_SetInit_Current(roleRenderer.transform, new Vector3(0, 0, -10), EasingType.OutCirc, 0, EasingType.Linear, 1f);
 
             var stateEntity = worldContext.StateEntity;
             stateEntity.isInit = true;

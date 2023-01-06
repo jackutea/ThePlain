@@ -10,8 +10,8 @@ namespace ThePlain.Infra.Facades {
         FreeInputCore inputCore;
         public FreeInputCore InputCore => inputCore;
 
-        TCCore tcCore;
-        public TCCore TCCore => tcCore;
+        TCCore cameraCore;
+        public TCCore CameraCore => cameraCore;
 
         UICore ui;
         public UICore UI => ui;
@@ -24,7 +24,7 @@ namespace ThePlain.Infra.Facades {
 
         public InfraContext() {
             inputCore = new FreeInputCore();
-            tcCore = new TCCore();
+            cameraCore = new TCCore();
             ui = new UICore();
             assetCore = new AssetCore();
             eventCenter = new InfraEventCenter();

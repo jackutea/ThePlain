@@ -26,16 +26,16 @@ namespace ThePlain.Main.Entry {
             infraController = new InfraController();
 
             mainController = new MainController();
-            mainContext = new MainContext();
-
             worldController = new WorldController();
+
+            infraController.Inject(infraContext);
 
             Action action = async () => {
 
                 var canvas = GetComponentInChildren<Canvas>();
-                await infraController.Init(canvas, infraContext);
+                await infraController.Init(canvas);
 
-                mainController.Init(mainContext, infraContext);
+                mainController.Init(infraContext);
                 worldController.Init(infraContext);
 
                 isInit = true;
@@ -47,18 +47,35 @@ namespace ThePlain.Main.Entry {
         }
 
         void FixedUpdate() {
+
             if (!isInit) {
                 return;
             }
+
             worldController.FixedTick();
+
         }
 
         void Update() {
+
             if (!isInit) {
                 return;
             }
-            mainController.Tick();
+
+            float dt = Time.deltaTime;
             worldController.Tick();
+
+        }
+
+        void LateUpdate() {
+
+            if (!isInit) {
+                return;
+            }
+
+            float dt = Time.deltaTime;
+            infraController.LateTick(dt);
+
         }
 
     }

@@ -7,9 +7,16 @@ namespace ThePlain.Main.Controller {
 
     public class MainController {
 
-        public MainController() { }
+        MainContext mainContext;
+        InfraContext infraContext;
 
-        public void Init(MainContext mainContext, InfraContext infraContext) {
+        public MainController() {
+            mainContext = new MainContext();
+        }
+
+        public void Init(InfraContext infraContext) {
+
+            this.infraContext = infraContext;
 
             var ui = infraContext.UI;
             var setter = ui.Setter;
@@ -18,10 +25,6 @@ namespace ThePlain.Main.Controller {
                 infraContext.EventCenter.InvokeStartGame();
                 setter.LoginPage_Close();
             });
-
-        }
-
-        public void Tick() {
 
         }
 

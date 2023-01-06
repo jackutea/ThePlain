@@ -6,9 +6,15 @@ namespace ThePlain.Infra.Controller {
 
     public class InfraController {
 
-        public InfraController() {}
+        InfraContext infraContext;
 
-        public async Task Init(Canvas canvas, InfraContext infraContext) {
+        public InfraController() { }
+
+        public void Inject(InfraContext infraContext) {
+            this.infraContext = infraContext;
+        }
+
+        public async Task Init(Canvas canvas) {
 
             var ui = infraContext.UI;
             ui.Inject(canvas);
@@ -24,6 +30,16 @@ namespace ThePlain.Infra.Controller {
             input.Setter.Bind(InputKeyCollection.MOVE_RIGHT, KeyCode.D);
             input.Setter.Bind(InputKeyCollection.JUMP, KeyCode.Space);
 
+            var cameraCore = infraContext.CameraCore;
+            cameraCore.Initialize(Camera.main);
+            cameraCore.SetterAPI.SpawnByMain(1);
+
+        }
+
+        public void LateTick(float dt) {
+
+            var cameraCore = infraContext.CameraCore;
+            cameraCore.Tick(dt);
         }
 
     }
