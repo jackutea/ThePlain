@@ -50,49 +50,26 @@ namespace ThePlain.World.Domain {
                 return;
             }
 
-            bool has = worldContext.RoleLogicRepo.TryGet(stateEntity.ownerRoleID, out var ownerRole);
-            if (!has) {
-                Debug.LogError("Owner Role Not Found");
-                return;
-            }
-
-            // Process Input
-            var inputCom = ownerRole.InputCom;
-            var input = infraContext.InputCore;
-            var inputGetter = input.Getter;
-
-            Vector2 moveAxis;
-            if (inputGetter.GetPressing(InputKeyCollection.MOVE_FWD)) {
-                moveAxis.y = 1;
-            } else if (inputGetter.GetPressing(InputKeyCollection.MOVE_BWD)) {
-                moveAxis.y = -1;
-            } else {
-                moveAxis.y = 0;
-            }
-            if (inputGetter.GetPressing(InputKeyCollection.MOVE_LEFT)) {
-                moveAxis.x = -1;
-            } else if (inputGetter.GetPressing(InputKeyCollection.MOVE_RIGHT)) {
-                moveAxis.x = 1;
-            } else {
-                moveAxis.x = 0;
-            }
-            inputCom.moveAxis = moveAxis;
-
-            if (inputGetter.GetPressing(InputKeyCollection.JUMP)) {
-                inputCom.isJumping = true;
-            } else {
-                inputCom.isJumping = false;
-            }
-
-            // Process Logic
             var roleLogicDomain = worldDomain.RoleLogicDomain;
-            roleLogicDomain.Move(dt, ownerRole);
-            roleLogicDomain.Jump(ownerRole);
-            roleLogicDomain.Falling(dt, ownerRole);
-
-            // Process Renderer
             var roleRendererDomain = worldDomain.RoleRendererDomain;
-            roleRendererDomain.Sync(ownerRole);
+            var roleRepo = worldContext.RoleLogicRepo;
+            var allRole = roleRepo.GetAll();
+            foreach (var role in allRole) {
+
+                // Process Input
+                if (role.ID == stateEntity.ownerRoleID) {
+                    roleLogicDomain.RecordOwnerInput(role);
+                }
+
+                // Process Logic
+                roleLogicDomain.Move(dt, role);
+                roleLogicDomain.Jump(role);
+                roleLogicDomain.Falling(dt, role);
+
+                // Process Renderer
+                roleRendererDomain.Sync(role);
+
+            }
 
         }
 

@@ -38,6 +38,38 @@ namespace ThePlain.World.Domain {
 
         }
 
+        internal void RecordOwnerInput(RoleLogicEntity ownerRole) {
+
+            var inputCom = ownerRole.InputCom;
+            var input = infraContext.InputCore;
+            var inputGetter = input.Getter;
+
+            Vector2 moveAxis;
+            if (inputGetter.GetPressing(InputKeyCollection.MOVE_FWD)) {
+                moveAxis.y = 1;
+            } else if (inputGetter.GetPressing(InputKeyCollection.MOVE_BWD)) {
+                moveAxis.y = -1;
+            } else {
+                moveAxis.y = 0;
+            }
+
+            if (inputGetter.GetPressing(InputKeyCollection.MOVE_LEFT)) {
+                moveAxis.x = -1;
+            } else if (inputGetter.GetPressing(InputKeyCollection.MOVE_RIGHT)) {
+                moveAxis.x = 1;
+            } else {
+                moveAxis.x = 0;
+            }
+            inputCom.moveAxis = moveAxis;
+
+            if (inputGetter.GetPressing(InputKeyCollection.JUMP)) {
+                inputCom.isJumping = true;
+            } else {
+                inputCom.isJumping = false;
+            }
+
+        }
+
         internal void Move(float dt, RoleLogicEntity role) {
             Vector3 cameraForward = Camera.main.transform.forward;
             Vector3 cameraRight = Camera.main.transform.right;

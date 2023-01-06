@@ -23,5 +23,9 @@ namespace ThePlain.World {
             all.Remove(id);
         }
 
+        public IEnumerable<RoleLogicEntity> GetAll() {
+            return all.Values;
+        }
+
     }
 }
