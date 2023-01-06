@@ -58,7 +58,7 @@ namespace ThePlain.Main.Entry {
                 return;
             }
             mainController.Tick();
-            worldController.Tick(infraContext);
+            worldController.Tick();
         }
 
     }

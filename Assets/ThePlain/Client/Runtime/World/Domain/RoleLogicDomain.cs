@@ -37,6 +37,14 @@ namespace ThePlain.World.Domain {
 
         }
 
+        internal void Move(RoleLogicEntity role) {
+            var inputCom = role.InputCom;
+            var rb = role.RB;
+            var speed = 5.5f;
+            var dir = inputCom.moveAxis;
+            rb.velocity = dir * speed;
+        }
+
     }
 
 }
