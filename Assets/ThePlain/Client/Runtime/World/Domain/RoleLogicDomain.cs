@@ -23,6 +23,7 @@ namespace ThePlain.World.Domain {
             var factory = worldContext.Factory;
             var assetCore = infraContext.AssetCore;
             var role = factory.CreateRoleLogic(assetCore);
+            role.OnCollisionEnterHandle += Collision_Role_Other;
 
             role.RB.position = pos;
 
@@ -42,6 +43,17 @@ namespace ThePlain.World.Domain {
             Vector3 cameraRight = Camera.main.transform.right;
 
             role.MoveByInput(cameraForward, cameraRight);
+        }
+
+        internal void Jump(RoleLogicEntity role) {
+            role.Jump();
+        }
+
+        void Collision_Role_Other(RoleLogicEntity role, Collision other) {
+            if (other.gameObject.layer == LayerCollection.GROUND) {
+                role.EnterGround();
+                Debug.Log("Enter Ground");
+            }
         }
 
     }

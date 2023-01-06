@@ -33,6 +33,7 @@ namespace ThePlain.Infra.Controller {
             var cameraCore = infraContext.CameraCore;
             cameraCore.Initialize(Camera.main);
             cameraCore.SetterAPI.SpawnByMain(1);
+            cameraCore.SetterAPI.GetHook(1);
 
         }
 

@@ -6,6 +6,7 @@ namespace ThePlain.World.Controller {
 
     public class WorldController {
 
+        InfraContext infraContext;
         WorldContext worldContext;
         WorldDomain worldDomain;
 
@@ -14,19 +15,27 @@ namespace ThePlain.World.Controller {
             worldDomain = new WorldDomain();
         }
 
-        public void Init(InfraContext infraContext) {
-
+        public void Inject(InfraContext infraContext) {
+            
+            this.infraContext = infraContext;
+            
             var worldStateDomain = worldDomain.WorldStateDomain;
             var fieldDomain = worldDomain.FieldDomain;
             var roleLogicDomain = worldDomain.RoleLogicDomain;
             var roleRendererDomain = worldDomain.RoleRendererDomain;
+            var physicsDomain = worldDomain.PhysicsDomain;
 
             worldStateDomain.Inject(infraContext, worldContext, worldDomain);
             fieldDomain.Inject(infraContext, worldContext);
             roleLogicDomain.Inject(infraContext, worldContext);
             roleRendererDomain.Inject(infraContext, worldContext);
+            physicsDomain.Inject(infraContext, worldContext);
+        }
+
+        public void Init() {
 
             infraContext.EventCenter.OnStartGameHandle += async () => {
+                var worldStateDomain = worldDomain.WorldStateDomain;
                 await worldStateDomain.EnterGame();
             };
 

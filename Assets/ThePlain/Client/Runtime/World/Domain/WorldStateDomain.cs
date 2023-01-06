@@ -33,7 +33,8 @@ namespace ThePlain.World.Domain {
             var roleRenderer = roleRendererDomain.Spawn(roleLogic.ID, pos);
 
             var cameraCore = infraContext.CameraCore;
-            cameraCore.SetterAPI.Follow_SetInit_Current(roleRenderer.transform, new Vector3(0, 0, -10), EasingType.OutCirc, 0, EasingType.Linear, 1f);
+            var cameraSetter = cameraCore.SetterAPI;
+            cameraSetter.Follow_SetInit_Current(roleRenderer.transform, new Vector3(0, 3.5f, -8), EasingType.Immediate, 0, EasingType.Linear, 1f);
 
             var stateEntity = worldContext.StateEntity;
             stateEntity.isInit = true;
@@ -86,6 +87,7 @@ namespace ThePlain.World.Domain {
             // Process Logic
             var roleLogicDomain = worldDomain.RoleLogicDomain;
             roleLogicDomain.Move(ownerRole);
+            roleLogicDomain.Jump(ownerRole);
 
             // Process Renderer
             var roleRendererDomain = worldDomain.RoleRendererDomain;

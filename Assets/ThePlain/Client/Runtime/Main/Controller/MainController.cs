@@ -14,9 +14,11 @@ namespace ThePlain.Main.Controller {
             mainContext = new MainContext();
         }
 
-        public void Init(InfraContext infraContext) {
-
+        public void Inject(InfraContext infraContext) {
             this.infraContext = infraContext;
+        }
+
+        public void Init() {
 
             var ui = infraContext.UI;
             var setter = ui.Setter;

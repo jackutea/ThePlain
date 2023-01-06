@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ThePlain.World.Entities {
@@ -11,8 +12,13 @@ namespace ThePlain.World.Entities {
         Rigidbody rb;
         public Rigidbody RB => rb;
 
+        bool isGround;
+        bool isJump;
+
         RoleInputRecordComponent inputCom;
         public RoleInputRecordComponent InputCom => inputCom;
+
+        public event Action<RoleLogicEntity, Collision> OnCollisionEnterHandle;
 
         public void Ctor() {
 
@@ -29,6 +35,9 @@ namespace ThePlain.World.Entities {
             var speed = 5.5f;
             var dir = inputCom.moveAxis;
 
+            var velo = rb.velocity;
+            float oldY = velo.y;
+
             var forward = cameraForward;
             forward.y = 0;
             forward.Normalize();
@@ -38,8 +47,28 @@ namespace ThePlain.World.Entities {
             right.Normalize();
 
             var moveDir = forward * dir.y + right * dir.x;
-            rb.velocity = moveDir * speed;
+            velo = moveDir * speed;
+            velo.y = oldY;
 
+            rb.velocity = velo;
+
+        }
+
+        public void Jump() {
+            if (inputCom.isJumping && isGround && !isJump) {
+                isJump = true;
+                isGround = false;
+                rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
+            }
+        }
+
+        public void EnterGround() {
+            isGround = true;
+            isJump = false;
+        }
+
+        void OnCollisionEnter(Collision other) {
+            OnCollisionEnterHandle.Invoke(this, other);
         }
 
     }

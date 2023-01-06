@@ -28,15 +28,17 @@ namespace ThePlain.Main.Entry {
             mainController = new MainController();
             worldController = new WorldController();
 
+            mainController.Inject(infraContext);
             infraController.Inject(infraContext);
+            worldController.Inject(infraContext);
 
             Action action = async () => {
 
                 var canvas = GetComponentInChildren<Canvas>();
                 await infraController.Init(canvas);
 
-                mainController.Init(infraContext);
-                worldController.Init(infraContext);
+                mainController.Init();
+                worldController.Init();
 
                 isInit = true;
 

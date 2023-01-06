@@ -16,11 +16,15 @@ namespace ThePlain.World.Facades {
         RoleRendererDomain roleRendererDomain;
         internal RoleRendererDomain RoleRendererDomain => roleRendererDomain;
 
+        PhysicsDomain physicsDomain;
+        internal PhysicsDomain PhysicsDomain => physicsDomain;
+
         public WorldDomain() {
             worldStateDomain = new WorldStateDomain();
             fieldDomain = new FieldDomain();
             roleLogicDomain = new RoleLogicDomain();
             roleRendererDomain = new RoleRendererDomain();
+            physicsDomain = new PhysicsDomain();
         }
 
     }
