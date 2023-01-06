@@ -34,7 +34,7 @@ namespace ThePlain.World.Entities {
         }
 
         public void MoveByInput(float dt, Vector3 cameraForward, Vector3 cameraRight) {
-            moveCom.Move(inputCom.moveAxis, dt, cameraForward, cameraRight);
+            moveCom.MoveAccelerate(inputCom.moveAxis, dt, cameraForward, cameraRight);
         }
 
         public void Jump() {

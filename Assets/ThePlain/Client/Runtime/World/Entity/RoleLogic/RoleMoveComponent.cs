@@ -32,7 +32,7 @@ namespace ThePlain.World.Entities {
             this.rb = rb;
         }
 
-        public void Move(Vector2 moveAxis, float dt, Vector3 cameraForward, Vector3 cameraRight) {
+        public void MoveAccelerate(Vector2 moveAxis, float dt, Vector3 cameraForward, Vector3 cameraRight) {
 
             // Forward
             if (moveAxis.y > 0) {
@@ -88,9 +88,16 @@ namespace ThePlain.World.Entities {
                     horizontalMaintainTime = -horizontalTouchMaxTime;
                 }
             } else {
-                horizontalMaintainTime -= dt;
-                if (horizontalMaintainTime < 0) {
-                    horizontalMaintainTime = 0;
+                if (horizontalMaintainTime > 0) {
+                    horizontalMaintainTime -= dt * 1.5f;
+                    if (horizontalMaintainTime <= 0) {
+                        horizontalMaintainTime = 0;
+                    }
+                } else if (horizontalMaintainTime < 0) {
+                    horizontalMaintainTime += dt * 1.5f;
+                    if (horizontalMaintainTime >= 0) {
+                        horizontalMaintainTime = 0;
+                    }
                 }
             }
 
