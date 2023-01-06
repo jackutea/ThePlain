@@ -65,7 +65,7 @@ namespace ThePlain.Main.Entry {
             }
 
             float dt = Time.deltaTime;
-            worldController.Tick();
+            worldController.Tick(dt);
 
         }
 

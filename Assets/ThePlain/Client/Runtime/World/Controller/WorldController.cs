@@ -45,10 +45,10 @@ namespace ThePlain.World.Controller {
 
         }
 
-        public void Tick() {
+        public void Tick(float dt) {
 
             var worldStateDomain = worldDomain.WorldStateDomain;
-            worldStateDomain.Tick();
+            worldStateDomain.Tick(dt);
 
         }
 

@@ -43,7 +43,7 @@ namespace ThePlain.World.Domain {
 
         }
 
-        internal void Tick() {
+        internal void Tick(float dt) {
 
             var stateEntity = worldContext.StateEntity;
             if (!stateEntity.isInit || stateEntity.isPause) {
@@ -86,8 +86,9 @@ namespace ThePlain.World.Domain {
 
             // Process Logic
             var roleLogicDomain = worldDomain.RoleLogicDomain;
-            roleLogicDomain.Move(ownerRole);
+            roleLogicDomain.Move(dt, ownerRole);
             roleLogicDomain.Jump(ownerRole);
+            roleLogicDomain.Falling(dt, ownerRole);
 
             // Process Renderer
             var roleRendererDomain = worldDomain.RoleRendererDomain;

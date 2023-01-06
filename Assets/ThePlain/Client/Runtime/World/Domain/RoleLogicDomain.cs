@@ -25,7 +25,7 @@ namespace ThePlain.World.Domain {
             var role = factory.CreateRoleLogic(assetCore);
             role.OnCollisionEnterHandle += Collision_Role_Other;
 
-            role.RB.position = pos;
+            role.SetPos(pos);
 
             var idService = worldContext.IDService;
             var id = idService.PickRoleID();
@@ -38,15 +38,18 @@ namespace ThePlain.World.Domain {
 
         }
 
-        internal void Move(RoleLogicEntity role) {
+        internal void Move(float dt, RoleLogicEntity role) {
             Vector3 cameraForward = Camera.main.transform.forward;
             Vector3 cameraRight = Camera.main.transform.right;
-
-            role.MoveByInput(cameraForward, cameraRight);
+            role.MoveByInput(dt, cameraForward, cameraRight);
         }
 
         internal void Jump(RoleLogicEntity role) {
             role.Jump();
+        }
+
+        internal void Falling(float dt, RoleLogicEntity role) {
+            role.Falling(dt);
         }
 
         void Collision_Role_Other(RoleLogicEntity role, Collision other) {

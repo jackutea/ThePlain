@@ -10,13 +10,15 @@ namespace ThePlain.World.Entities {
         public void SetID(int id) => this.id = id;
 
         Rigidbody rb;
-        public Rigidbody RB => rb;
-
-        bool isGround;
-        bool isJump;
+        public Vector3 Pos => rb.position;
+        public Quaternion Rot => rb.rotation;
+        public void SetPos(Vector3 value) => rb.position = value;
 
         RoleInputRecordComponent inputCom;
         public RoleInputRecordComponent InputCom => inputCom;
+
+        RoleMoveComponent moveCom;
+        public RoleMoveComponent MoveCom => moveCom;
 
         public event Action<RoleLogicEntity, Collision> OnCollisionEnterHandle;
 
@@ -25,46 +27,26 @@ namespace ThePlain.World.Entities {
             rb = GetComponent<Rigidbody>();
 
             inputCom = new RoleInputRecordComponent();
+            
+            moveCom = new RoleMoveComponent();
+            moveCom.Inject(rb);
 
         }
 
-        public void MoveByInput(Vector3 cameraForward, Vector3 cameraRight) {
-
-            var inputCom = this.inputCom;
-            var rb = this.rb;
-            var speed = 5.5f;
-            var dir = inputCom.moveAxis;
-
-            var velo = rb.velocity;
-            float oldY = velo.y;
-
-            var forward = cameraForward;
-            forward.y = 0;
-            forward.Normalize();
-
-            var right = cameraRight;
-            right.y = 0;
-            right.Normalize();
-
-            var moveDir = forward * dir.y + right * dir.x;
-            velo = moveDir * speed;
-            velo.y = oldY;
-
-            rb.velocity = velo;
-
+        public void MoveByInput(float dt, Vector3 cameraForward, Vector3 cameraRight) {
+            moveCom.Move(inputCom.moveAxis, dt, cameraForward, cameraRight);
         }
 
         public void Jump() {
-            if (inputCom.isJumping && isGround && !isJump) {
-                isJump = true;
-                isGround = false;
-                rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
-            }
+            moveCom.Jump(inputCom.isJumping);
+        }
+
+        public void Falling(float dt) {
+            moveCom.Falling(dt);
         }
 
         public void EnterGround() {
-            isGround = true;
-            isJump = false;
+            moveCom.EnterGround();
         }
 
         void OnCollisionEnter(Collision other) {

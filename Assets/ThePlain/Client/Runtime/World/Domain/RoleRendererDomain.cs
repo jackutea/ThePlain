@@ -45,8 +45,7 @@ namespace ThePlain.World.Domain {
                 return;
             }
 
-            var rb = roleLogic.RB;
-            roleRenderer.transform.position = rb.position;
+            roleRenderer.transform.position = roleLogic.Pos;
 
         }
 
