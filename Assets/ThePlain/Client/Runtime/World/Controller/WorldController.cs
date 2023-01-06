@@ -24,12 +24,14 @@ namespace ThePlain.World.Controller {
             var roleLogicDomain = worldDomain.RoleLogicDomain;
             var roleRendererDomain = worldDomain.RoleRendererDomain;
             var physicsDomain = worldDomain.PhysicsDomain;
+            var cameraDomain = worldDomain.CameraDomain;
 
             worldStateDomain.Inject(infraContext, worldContext, worldDomain);
             fieldDomain.Inject(infraContext, worldContext);
             roleLogicDomain.Inject(infraContext, worldContext);
             roleRendererDomain.Inject(infraContext, worldContext);
             physicsDomain.Inject(infraContext, worldContext);
+            cameraDomain.Inject(infraContext, worldContext);
         }
 
         public void Init() {

@@ -7,6 +7,8 @@ namespace ThePlain.World.Entities {
         public Vector2 moveAxis;
         public bool isJumping;
 
+        public Vector2 cameraRotAxis;
+
     }
 
 }

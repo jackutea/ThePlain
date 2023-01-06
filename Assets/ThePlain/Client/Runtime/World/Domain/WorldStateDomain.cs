@@ -35,6 +35,7 @@ namespace ThePlain.World.Domain {
             var cameraCore = infraContext.CameraCore;
             var cameraSetter = cameraCore.SetterAPI;
             cameraSetter.Follow_SetInit_Current(roleRenderer.transform, new Vector3(0, 3.5f, -8), EasingType.Immediate, 0, EasingType.Linear, 1f);
+            cameraSetter.LookAt_SetInit_Current(roleRenderer.transform, Vector3.zero);
 
             var stateEntity = worldContext.StateEntity;
             stateEntity.isInit = true;
@@ -52,6 +53,8 @@ namespace ThePlain.World.Domain {
 
             var roleLogicDomain = worldDomain.RoleLogicDomain;
             var roleRendererDomain = worldDomain.RoleRendererDomain;
+            var cameraDomain = worldDomain.CameraDomain;
+
             var roleRepo = worldContext.RoleLogicRepo;
             var allRole = roleRepo.GetAll();
             foreach (var role in allRole) {
@@ -59,6 +62,7 @@ namespace ThePlain.World.Domain {
                 // Process Input
                 if (role.ID == stateEntity.ownerRoleID) {
                     roleLogicDomain.RecordOwnerInput(role);
+                    cameraDomain.RotateCamera(role.InputCom.cameraRotAxis);
                 }
 
                 // Process Logic

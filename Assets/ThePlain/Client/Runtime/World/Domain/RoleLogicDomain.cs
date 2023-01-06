@@ -44,6 +44,7 @@ namespace ThePlain.World.Domain {
             var input = infraContext.InputCore;
             var inputGetter = input.Getter;
 
+            // Move
             Vector2 moveAxis;
             if (inputGetter.GetPressing(InputKeyCollection.MOVE_FWD)) {
                 moveAxis.y = 1;
@@ -62,11 +63,24 @@ namespace ThePlain.World.Domain {
             }
             inputCom.moveAxis = moveAxis;
 
+            // Jump
             if (inputGetter.GetPressing(InputKeyCollection.JUMP)) {
                 inputCom.isJumping = true;
             } else {
                 inputCom.isJumping = false;
             }
+
+            // Camera
+            Vector2 cameraRotAxis;
+            if (Input.GetMouseButton(1)) {
+                cameraRotAxis.x = Input.GetAxis("Mouse X");
+                cameraRotAxis.y = Input.GetAxis("Mouse Y");
+            } else {
+                cameraRotAxis.x = 0;
+                cameraRotAxis.y = 0;
+            }
+
+            inputCom.cameraRotAxis = cameraRotAxis;
 
         }
 
