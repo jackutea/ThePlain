@@ -19,7 +19,7 @@ namespace ThePlain.World.Domain {
         internal void RotateCamera(Vector2 cameraRotAxis) {
             var cameraCore = infraContext.CameraCore;
             var cameraSetter = cameraCore.SetterAPI;
-            cameraSetter.Move_Current(cameraRotAxis);
+            cameraSetter.Round_Current(cameraRotAxis);
         }
         
     }
